@@ -1,0 +1,17 @@
+PROGRAM PRG_Mirror
+  VAR
+    I_Button AT %IX100.0 : BOOL;
+    Q_Lamp AT %QX100.0 : BOOL;
+  END_VAR
+
+  Q_Lamp := I_Button;
+END_PROGRAM
+
+
+CONFIGURATION Config0
+
+  RESOURCE Res0 ON PLC
+    TASK task0(INTERVAL := T#50ms,PRIORITY := 0);
+    PROGRAM instance0 WITH task0 : PRG_Mirror;
+  END_RESOURCE
+END_CONFIGURATION
