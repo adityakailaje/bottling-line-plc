@@ -1,0 +1,5 @@
+t_s,tag,value
+0.02,I_EStop_OK,1
+0.02,I_InfeedPresent,1
+0.02,I_ConvOL_OK,1
+0.02,I_TankLow_LS,1
