@@ -1,0 +1,25 @@
+tag,modbus_obj,modbus_addr,openplc_addr,type,range_units,failsafe,description
+I_EStop_OK,DI,0,%IX100.0,BOOL,1=healthy,0=trip,E-stop chain healthy
+I_InfeedPresent,DI,1,%IX100.1,BOOL,1=bottle present,n/a,Bottle waiting at infeed gate
+I_FillPos,DI,2,%IX100.2,BOOL,1=occupied,n/a,Bottle in position at fill station
+I_CapPos,DI,3,%IX100.3,BOOL,1=occupied,n/a,Bottle in position at cap station
+I_InspectPos,DI,4,%IX100.4,BOOL,1=occupied,n/a,Bottle in position at inspection
+I_CapPresent,DI,5,%IX100.5,BOOL,1=cap detected,n/a,Cap detected at inspection
+I_RejectBinFull,DI,6,%IX100.6,BOOL,1=full,n/a,Reject bin full
+I_OutfeedSensor,DI,7,%IX100.7,BOOL,rising edge=count pulse,n/a,Bottle passes outfeed for counting
+I_ConvOL_OK,DI,8,%IX101.0,BOOL,1=healthy,0=overload trip,Conveyor drive overload healthy
+I_TankLow_LS,DI,9,%IX101.1,BOOL,1=level above low switch,0=low,Tank low-level switch
+I_TankHigh_LS,DI,10,%IX101.2,BOOL,1=high level reached,n/a,Tank high-level switch
+I_Heartbeat,DI,11,%IX101.3,BOOL,toggles every 500 ms,no toggle for 2 s=communication fault,Simulator heartbeat
+I_ConvRunning,DI,12,%IX101.4,BOOL,1=moving,n/a,Conveyor run feedback added in I/O list v1.1
+Q_ConveyorRun,COIL,0,%QX100.0,BOOL,1=run,0=stop,Conveyor drive on
+Q_FillValve,COIL,1,%QX100.1,BOOL,1=open,0=closed,Fill valve open
+Q_CapperRun,COIL,2,%QX100.2,BOOL,1=run,0=stop,Capper head cycle
+Q_RejectPusher,COIL,3,%QX100.3,BOOL,1=extend,0=retracted,Reject pusher extend
+Q_InfeedGate,COIL,4,%QX100.4,BOOL,1=release,0=closed,Infeed gate release
+Q_BeaconGreen,COIL,5,%QX100.5,BOOL,1=on,0=off,Stack light green running indication
+Q_BeaconAmber,COIL,6,%QX100.6,BOOL,1=on,0=off,Stack light amber warning or batch-done indication
+Q_BeaconRed,COIL,7,%QX100.7,BOOL,1=on,0=off,Stack light red fault or E-stop indication
+I_TankLevel_raw,IR,0,%IW100,INT,0-32767 = 0-100 %,n/a,Supply tank level raw value
+I_FillVolume_x10,IR,1,%IW101,INT,0-5000 = 0-500.0 ml,n/a,Measured bottle fill volume at inspection in 0.1 ml units
+Q_PumpSpeed_raw,HR,0,%QW100,INT,0-32767 = 0-100 %,0=stop,Supply pump speed command from tank-level controller

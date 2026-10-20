@@ -1,0 +1,23 @@
+tag,direction,modbus_obj,modbus_addr,openplc_addr,type,range_units,access,description
+HMI_Start,HMI->PLC,COIL,8,%QX101.0,BOOL,0=inactive; momentary 1 on press,HMI writes; PLC reads,Start command; rising-edge detected
+HMI_Stop,HMI->PLC,COIL,9,%QX101.1,BOOL,0=inactive; momentary 1 on press,HMI writes; PLC reads,Stop command; rising-edge detected
+HMI_Reset,HMI->PLC,COIL,10,%QX101.2,BOOL,0=inactive; momentary 1 on press,HMI writes; PLC reads,Reset command; rising-edge detected and effective only after cause clears
+HMI_AutoSel,HMI->PLC,COIL,11,%QX101.3,BOOL,0=Manual; 1=Auto,HMI writes; PLC reads,Operating mode selector
+HMI_ManConv,HMI->PLC,COIL,12,%QX101.4,BOOL,0=off; 1=jog request,HMI writes; PLC reads,Manual conveyor jog; Manual mode only and interlocks required
+HMI_ManFill,HMI->PLC,COIL,13,%QX101.5,BOOL,0=off; 1=jog request,HMI writes; PLC reads,Manual fill-valve jog; Manual mode only and interlocks required
+HMI_ManCap,HMI->PLC,COIL,14,%QX101.6,BOOL,0=off; 1=jog request,HMI writes; PLC reads,Manual capper jog; Manual mode only and interlocks required
+HMI_ManReject,HMI->PLC,COIL,15,%QX101.7,BOOL,0=off; 1=jog request,HMI writes; PLC reads,Manual reject-pusher jog; Manual mode only and interlocks required
+ST_Running,PLC->HMI,COIL,16,%QX102.0,BOOL,0=not running; 1=running,PLC writes; HMI reads,Machine running status lamp
+ST_Fault,PLC->HMI,COIL,17,%QX102.1,BOOL,0=no fault; 1=fault,PLC writes; HMI reads,Machine fault status lamp
+ST_EStop,PLC->HMI,COIL,18,%QX102.2,BOOL,0=not in E-stop; 1=E-stop,PLC writes; HMI reads,E-stop status lamp
+HMI_Ack,HMI->PLC,COIL,24,%QX103.0,BOOL,0=inactive; momentary 1 on press,HMI writes; PLC reads,Acknowledge warnings and leave BATCH DONE; does not reset a fault
+HMI_AutoAckBatch,HMI->PLC,COIL,25,%QX103.1,BOOL,0=disabled; 1=enabled,HMI writes; PLC reads,Engineering-tab option for unattended endurance-test batch acknowledgement
+HMI_BatchTarget,HMI->PLC,HR,10,%QW110,INT,1-99 bottles; default 24,HMI writes; PLC reads,Requested accepted-bottle target; PLC clamps to 1-99
+HMI_LevelSP_x10,HMI->PLC,HR,11,%QW111,INT,500-900 = 50.0-90.0 %,HMI writes; PLC reads,Tank-level setpoint in 0.1 percentage-point units; PLC clamps to 50-90 %
+ST_State,PLC->HMI,HR,20,%QW120,INT,0; 10; 20; 30; 40; 45; 50; 90; 99,PLC writes; HMI reads,Master state number shown as text
+ST_GoodCount,PLC->HMI,HR,21,%QW121,INT,0-32767 bottles,PLC writes; HMI reads,Good or accepted production count
+ST_RejectCount,PLC->HMI,HR,22,%QW122,INT,0-32767 bottles,PLC writes; HMI reads,Rejected production count
+ST_BatchCount,PLC->HMI,HR,23,%QW123,INT,Batch counter value,PLC writes; HMI reads,Batch count/status displayed on HMI; define exact meaning consistently in the PLC and HMI implementation
+ST_TankLevel_x10,PLC->HMI,HR,24,%QW124,INT,0-1000 = 0.0-100.0 %,PLC writes; HMI reads,Scaled tank level for gauge and five-minute trend
+ST_AlarmWord,PLC->HMI,HR,25,%QW125,WORD,Bits 0-8 map A01-A09; bits 9-15 reserved,PLC writes; HMI reads,Bit-packed active alarms; HMI decodes alarm ID and message
+ST_LastFill_x10,PLC->HMI,HR,26,%QW126,INT,0-5000 = 0-500.0 ml,PLC writes; HMI reads,Last measured fill volume in 0.1 ml units
